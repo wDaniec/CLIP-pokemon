@@ -69,4 +69,5 @@ class PokemonDataset(Dataset):
                 if self.transform:
                     image = self.transform(image)
                 examples.append((image, cls))
+                self.img_labels.drop([i])
         return examples

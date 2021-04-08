@@ -7,6 +7,7 @@ model, preprocess = clip.load("ViT-B/32", device=device)
 
 dataset = PokemonDataset()
 classes = list(dataset.get_classes())
+print(len(classes))
 
 image, real_labels = dataset[3]
 image_tensor = preprocess(image).unsqueeze(0).to(device)
