@@ -15,9 +15,9 @@ proper_one = defaultdict(int)
 proper_two = defaultdict(int)
 all_one = defaultdict(int)
 all_two = defaultdict(int)
+text = clip.tokenize(classes).to(device)
 for image, real_labels in tqdm(dataset):
     image_tensor = preprocess(image).unsqueeze(0).to(device)
-    text = clip.tokenize(classes).to(device)
 
     with torch.no_grad():
 

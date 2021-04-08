@@ -5,7 +5,6 @@ from tqdm import tqdm
 
 from collections import defaultdict
 
-
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 optimizer = torch.optim.SGD(model.parameters(), lr=0.0005, momentum=0.5)
@@ -13,9 +12,8 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.0005, momentum=0.5)
 dataset = PokemonDataset()
 classes = list(dataset.get_classes())
 text = clip.tokenize(classes).to(device)
-examples = dataset.fetch_per_type_examples()
-
-for _ in tqdm(range(5)):
+examples, pokemon_ids_to_omit = dataset.fetch_per_type_examples(5)
+for _ in tqdm(range(75)):
     optimizer.zero_grad()
 
     labels = []
@@ -30,7 +28,7 @@ for _ in tqdm(range(5)):
     probs = logits.softmax(dim=-1)
 
     loss = torch.nn.functional.cross_entropy(probs, torch.as_tensor(labels).to(device))
-    print(loss)
+    print(loss.cpu().item())
     loss.backward()
     optimizer.step()
 
@@ -39,13 +37,14 @@ proper_one = defaultdict(int)
 proper_two = defaultdict(int)
 all_one = defaultdict(int)
 all_two = defaultdict(int)
-for image, real_labels in tqdm(dataset):
+text = clip.tokenize(classes).to(device)
+print(pokemon_ids_to_omit)
+for i, (image, real_labels) in enumerate(tqdm(dataset)):
+    if i in pokemon_ids_to_omit:
+        continue
     image_tensor = preprocess(image).unsqueeze(0).to(device)
-    text = clip.tokenize(classes).to(device)
 
     with torch.no_grad():
-        image_features = model.encode_image(image_tensor)
-        text_features = model.encode_text(text)
 
         logits_per_image, logits_per_text = model(image_tensor, text)
         probs = logits_per_image.softmax(dim=-1).cpu().numpy()
