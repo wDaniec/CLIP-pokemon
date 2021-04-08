@@ -5,6 +5,7 @@ from torch.utils.data import Dataset
 from PIL import Image
 
 
+
 def prep():
     pokemons = pd.read_csv('./data/pokedex.csv')
     numbers = []
