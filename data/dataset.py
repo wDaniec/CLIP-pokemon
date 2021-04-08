@@ -57,9 +57,15 @@ class PokemonDataset(Dataset):
         return set(type1) | set(type2)
 
     # to be used for few-shot learning regime; return n examples of each type
+    # note: for training purposes we would like to pass each example with only one label
     def fetch_per_type_examples(self, n_examples=1):
-        examples = pd.concat([
-                self.img_labels.query(f'"{cls}" in Type1 or "{cls}" in Type2').sample(n_examples)
-                for cls in self.get_classes()
-        ])
+        examples = []
+        for cls in self.get_classes():
+            cur = self.img_labels.query(f'"{cls}" in Type1 or "{cls}" in Type2').sample(n_examples)
+            for i in range(n_examples):
+                pokemon = cur.iloc[i]
+                image = Image.open(pokemon["path"])
+                if self.transform:
+                    image = self.transform(image)
+                examples.append((image, cls))
         return examples
