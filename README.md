@@ -13,7 +13,9 @@ pip install git+https://github.com/openai/CLIP.git
 
 ---
 Little insight into the Pokemon world:
+
 ![dataset_preview](https://github.com/wDaniec/CLIP-pokemon/tree/csv/figures_and_metrics/dataset_preview.png?raw=true)
+
 https://github.com/wDaniec/CLIP-pokemon/tree/main
 As we see above, each of them belongs to one or two types (classes), so the problem CLIP will be facing is kind of multilabel classification.
 
