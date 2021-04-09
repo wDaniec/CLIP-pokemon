@@ -11,3 +11,20 @@ conda install --yes -c pytorch pytorch=1.7.1 torchvision cpuonly
 pip install git+https://github.com/openai/CLIP.git
 ```
 
+---
+Little insight into the Pokemon world:
+
+![dataset_preview](./figures_and_metrics/dataset_preview.png?raw=true)
+
+https://github.com/wDaniec/CLIP-pokemon/tree/main
+As we see above, each of them belongs to one or two types (classes), so the problem CLIP will be facing is kind of multilabel classification.
+
+Some gist of numbers in the dataset:
+- number of Pokemons:  707 (of one-type: 345 and two-type: 362)
+- number of types: 18
+
+We want to check whether CLIP is able of distinguishing between these classes.
+The task is really hard but could potentially give us some insight, what CLIP is capable of;
+some of our Pocket Monsters have  subtle features which could give a human hint of its belonging.
+
+Random chance of guessing is around 9%  while CLIP achieves 25%, what we calculated as average of accuracies among each case of one (20,2%) and two-types (27,6%) pocket monsters.
