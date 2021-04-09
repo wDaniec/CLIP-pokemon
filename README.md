@@ -23,8 +23,8 @@ Some gist of numbers in the dataset:
 - number of Pokemons:  707 (of one-type: 345 and two-type: 362)
 - number of types: 18
 
-We want to check whether CLIP is able of distinguishing between these clases.
+We want to check whether CLIP is able of distinguishing between these classes.
 The task is really hard but could potentially give us some insight, what CLIP is capable of;
-some of our Pocket Monsters have  
+some of our Pocket Monsters have  subtle features which could give a human hint of its belonging.
 
-Let's focus on distributions between classes:
+Random chance of guessing is around 9%  while CLIP achieves 25%, what we calculated as average of accuracies among each case of one (20,2%) and two-types (27,6%) pocket monsters.
