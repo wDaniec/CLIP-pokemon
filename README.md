@@ -13,7 +13,7 @@ pip install git+https://github.com/openai/CLIP.git
 
 ---
 Little insight into the Pokemon world:
-![dataset_preview](https://github.com/wDaniec/CLIP-pokemon/tree/csv/figures_and_metrics/image.jpg?raw=true)
+![dataset_preview](https://github.com/wDaniec/CLIP-pokemon/tree/csv/figures_and_metrics/dataset_preview.png?raw=true)
 https://github.com/wDaniec/CLIP-pokemon/tree/main
 As we see above, each of them belongs to one or two types (classes), so the problem CLIP will be facing is kind of multilabel classification.
 
@@ -26,12 +26,3 @@ The task is really hard but could potentially give us some insight, what CLIP is
 some of our Pocket Monsters have  
 
 Let's focus on distributions between classes:
-
-
-
-
-we will feed it with image, and the model should provide its 
-Each Pokemon has one or two types; in total we have 707 (after ommiting "specials" for simplicity, like Pokemon Mega)
-and 362
-
-We would like to see, how CLIP would 
