@@ -8,7 +8,7 @@ from data import PokemonDataset
 
 def class_examples(path):
     single_class = False
-    data = PokemonDataset().fetch_per_type_examples(single_class=single_class)
+    data = PokemonDataset().fetch_per_type_examples()
     fig, axs = plt.subplots(3, 6, figsize=(14, 7))
 
     for datum, ax in zip(data, axs.flatten()):
@@ -21,7 +21,12 @@ def class_examples(path):
     plt.savefig(path)
 
 
-def count(path):
+def count_type_reprs(path):
+    metrics = pd.read_csv(path)
+    metrics.count(axis=1)
+
+
+def count_single_types(path):
     metrics = pd.read_csv(path)
     metrics['MISSING'] = metrics.apply(lambda x: x.isnull().sum(), axis='columns')
     print(metrics['MISSING'])
@@ -36,20 +41,6 @@ def peek_at_classes(path):
         break
 
 
-peek_at_classes(os.path.join("figures_and_metrics", "preds.csv"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class_examples(os.path.join("figures_and_metrics", "dataset_preview.png"))
-# count(os.path.join("figures_and_metrics", "preds.csv"))
-
+PATH = os.path.join("figs", "preds.csv")
+metrics = pd.read_csv(PATH)
+print(metrics)
