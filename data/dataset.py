@@ -57,8 +57,6 @@ class PokemonDataset(Dataset):
         type2 = [x for x in pd.unique(self.img_labels["Type2"]) if not pd.isnull(x)]
         return set(type1) | set(type2)
 
-    # to be used for few-shot learning regime; return n examples of each type
-    # note: for training purposes we would like to pass each example with only one label
     def fetch_per_type_examples(self, n_examples=1):
         examples = []
         for cls in self.get_classes():
