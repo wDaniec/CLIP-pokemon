@@ -7,7 +7,7 @@ from PIL import Image
 
 
 def prep():
-    pokemons = pd.read_csv('./data/pokedex.csv')
+    pokemons = pd.read_csv('./data/pokedex_raw.csv')
     numbers = []
     for i in range(1, len(pokemons) + 1):
         numbers.append(i)

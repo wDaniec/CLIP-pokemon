@@ -19,8 +19,8 @@ Little insight into the Pokemon world:
 As we see above, each of them belongs to one or two types (classes), so the problem CLIP will be facing is kind of multilabel classification.
 
 Some gist of numbers in the dataset:
-- number of Pokemons:  707 (of one-type: 345 and two-type: 362)
-- number of types: 18
+- number of Pokemons:  708 (of one-type: 346 and of two-type: 362)
+- number of types: 18 (Bug: 64, Dark: 44, Dragon: 37, Electric: 41, Fairy: 35, Fighting: 43, Fire: 56, Flying: 88, Ghost: 36, Grass: 79, Ground: 58, Ice: 33, Normal: 96, Poison: 59, Psychic: 73, Rock: 55, Steel: 41, Water: 116)
 
 We want to check whether CLIP is able of distinguishing between these classes.
 The task is really hard but could potentially give us some insight, what CLIP is capable of;
