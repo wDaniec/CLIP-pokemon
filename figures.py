@@ -60,9 +60,32 @@ def peek_at_classes():
         plt.savefig(os.path.join("figs", f"{cls}_preds_preview.png"))
 
 
+def peek_at_pokemon():
+    pkm_idxs = [0, 3, 6, 24]  # pikachu
+    dataset = PokemonDataset()
+
+    for pkm_idx in pkm_idxs:
+        pkm_img, pkm_labs = dataset[pkm_idx]
+        pkm_labs = ', '.join([l for l in pkm_labs if l])
+        pred = pd.read_csv(PREDS_PATH).iloc[pkm_idx]
+        pred_clses = pred.keys()[1:]
+        pred_vals = pred.to_numpy()[1:]
+
+        fig, axs = plt.subplots(1, 2)
+        axs[0].imshow(pkm_img)
+        axs[0].set_title(pkm_labs)
+        axs[0].axis('off')
+
+        axs[1].barh(pred_clses, pred_vals, align='center')
+        axs[1].set_yticks(np.arange(len(pred_clses)))
+        axs[1].set_yticklabels(pred_clses)
+
+        fig.tight_layout()
+        plt.savefig(os.path.join("figs", f"{pkm_idx}_preview.png"))
+
 # clean_pokedex()
 # dataset_preview()
 # print(metrics)
 # count_type_reprs()
 # count_single_types()
-peek_at_classes()
+peek_at_pokemon()

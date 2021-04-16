@@ -27,3 +27,19 @@ The task is really hard but could potentially give us some insight, what CLIP is
 some of our Pocket Monsters have  subtle features which could give a human hint of its belonging.
 
 Random chance of guessing is around 9%  while CLIP achieves 25%, what we calculated as average of accuracies among each case of one (20,2%) and two-types (27,6%) pocket monsters.
+
+For each class we checked, which Pokemons are most and least representative from perspective of CLIP.
+Here is example for ice type:
+
+![dataset_preview](figs/Ice_preds_preview.png?raw=true)
+
+and for fire:
+
+![dataset_preview](figs/Fire_preds_preview.png?raw=true)
+
+Additionaly, we peeked at specific Pokemons - what odds for belonging CLIP sees:
+
+![dataset_preview](figs/0_preview.png?raw=true)
+![dataset_preview](figs/3_preview.png?raw=true)
+![dataset_preview](figs/6_preview.png?raw=true)
+![dataset_preview](figs/24_preview.png?raw=true)
