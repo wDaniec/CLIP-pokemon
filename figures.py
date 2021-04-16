@@ -45,7 +45,9 @@ def peek_at_classes():
     preds = pd.read_csv(PREDS_PATH)
 
     for cls in classes:
-        cls_preds = pd.concat((preds[cls].sort_values()[-5:][::-1], preds[cls].sort_values()[:5]))
+
+        # cls_preds = pd.concat((preds[cls].sort_values()[-5:][::-1], preds[cls].sort_values()[:5]))
+        cls_preds = preds[cls].sort_values()[-10:][::-1]
         fig, axs = plt.subplots(2, 5, figsize=(10, 5))
 
         for (idx, prob), ax in zip(cls_preds.iteritems(), axs.flatten()):
@@ -60,32 +62,30 @@ def peek_at_classes():
         plt.savefig(os.path.join("figs", f"{cls}_preds_preview.png"))
 
 
-def peek_at_pokemon():
-    pkm_idxs = [0, 3, 6, 24]  # pikachu
+def peek_at_pokemons():
+    pkm_idxs, cls = [170, 256, 53, 86, 115], "Water"
+    # pkm_idxs, cls = [387, 125, 76, 145], "Fire"
     dataset = PokemonDataset()
 
-    for pkm_idx in pkm_idxs:
+    fig, axs = plt.subplots(2, len(pkm_idxs), figsize=(14, 6))
+
+    for idx, pkm_idx in enumerate(pkm_idxs):
         pkm_img, pkm_labs = dataset[pkm_idx]
         pkm_labs = ', '.join([l for l in pkm_labs if l])
         pred = pd.read_csv(PREDS_PATH).iloc[pkm_idx]
         pred_clses = pred.keys()[1:]
         pred_vals = pred.to_numpy()[1:]
 
-        fig, axs = plt.subplots(1, 2)
-        axs[0].imshow(pkm_img)
-        axs[0].set_title(pkm_labs)
-        axs[0].axis('off')
+        axs[0, idx].imshow(pkm_img)
+        axs[0, idx].set_title(pkm_labs)
+        axs[0, idx].axis('off')
 
-        axs[1].barh(pred_clses, pred_vals, align='center')
-        axs[1].set_yticks(np.arange(len(pred_clses)))
-        axs[1].set_yticklabels(pred_clses)
+        axs[1, idx].barh(pred_clses, pred_vals, align='center')
+        axs[1, idx].set_yticks(np.arange(len(pred_clses)))
+        axs[1, idx].set_yticklabels(pred_clses)
 
-        fig.tight_layout()
-        plt.savefig(os.path.join("figs", f"{pkm_idx}_preview.png"))
+    fig.tight_layout()
+    plt.savefig(os.path.join("figs", f"{cls}_pokemons_preview.png"))
 
-# clean_pokedex()
-# dataset_preview()
-# print(metrics)
-# count_type_reprs()
-# count_single_types()
-peek_at_pokemon()
+
+peek_at_pokemons()

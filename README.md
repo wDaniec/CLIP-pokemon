@@ -28,18 +28,17 @@ some of our Pocket Monsters have  subtle features which could give a human hint 
 
 Random chance of guessing is around 9%  while CLIP achieves 25%, what we calculated as average of accuracies among each case of one (20,2%) and two-types (27,6%) pocket monsters.
 
-For each class we checked, which Pokemons are most and least representative from perspective of CLIP.
-Here is example for ice type:
+We checked what CLIP perceives as most and least representative for each type. Additionaly we took a closer look at specific Pokemons odds. 
+Here is an example for grass type:
+![](figs/Grass_preds_preview.png?raw=true)
+It looks like it have solid understanding what these concepts are as it produces reasonable and confident predictions.
 
-![dataset_preview](figs/Ice_preds_preview.png?raw=true)
+For the fire type, situation is a bit different. Although it recognizes well, it is significantly less confident what we see as strange because of obvious flame marks.
+![](figs/Fire_preds_preview.png?raw=true)
+![](figs/Fire_pokemons_preview.png?raw=true)
 
-and for fire:
+With the water type CLIP failed to associate any Pokemon:
+![](figs/Water_preds_preview.png?raw=true)
+![](figs/Water_pokemons_preview.png?raw=true)
 
-![dataset_preview](figs/Fire_preds_preview.png?raw=true)
-
-Additionaly, we peeked at specific Pokemons - what odds for belonging CLIP sees:
-
-![dataset_preview](figs/0_preview.png?raw=true)
-![dataset_preview](figs/3_preview.png?raw=true)
-![dataset_preview](figs/6_preview.png?raw=true)
-![dataset_preview](figs/24_preview.png?raw=true)
+Overall we grade CLIP for a 3+ taking into account the task was hard.
