@@ -28,6 +28,8 @@ some of our Pocket Monsters have  subtle features which could give a human hint 
 
 Random chance of guessing is around 9%  while CLIP achieves 25%, what we calculated as average of accuracies among each case of one (20,2%) and two-types (27,6%) pocket monsters.
 
+![](figs/accuracy.png)
+
 We checked what CLIP perceives as most and least representative for each type. Additionaly we took a closer look at specific Pokemons odds. 
 Here is an example for grass type:
 ![](figs/Grass_preds_preview.png?raw=true)
